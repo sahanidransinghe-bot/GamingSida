@@ -3,8 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/fireba
 import {
   getFirestore,
   collection,
-  addDoc,
-  getDocs
+  addDoc
 }
 from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
@@ -105,7 +104,7 @@ function displaySetups(items){
 
     card.innerHTML = `
 
-      <img src="${setup.image}">
+      <img src="${setup.image}" alt="${setup.title}">
 
       <div class="game-info">
 
@@ -121,7 +120,9 @@ function displaySetups(items){
 
         <div class="tags">
 
-          ${setup.tags.map(tag => `<span>${tag}</span>`).join("")}
+          ${setup.tags.map(tag =>
+            `<span>${tag}</span>`
+          ).join("")}
 
         </div>
 
@@ -181,20 +182,6 @@ async function saveFavorite(setup){
 
 }
 
-async function loadFavorites(){
-
-  const querySnapshot = await getDocs(collection(db, "favorites"));
-
-  querySnapshot.forEach((doc) => {
-
-    console.log(doc.data());
-
-  });
-
-}
-
-loadFavorites();
-
 const searchInput = document.querySelector(".search-input");
 
 if(searchInput){
@@ -205,11 +192,7 @@ if(searchInput){
 
     const filtered = setups.filter(setup => {
 
-      return (
-
-        setup.title.toLowerCase().includes(value)
-
-      );
+      return setup.title.toLowerCase().includes(value);
 
     });
 
@@ -219,21 +202,49 @@ if(searchInput){
 
 }
 
-const API_KEY = "YOUR_RAWG_API_KEY";
+const API_KEY = "AIzaSyAqw2oE3KkW8QtJXo0hMglLWELTcQBIH4k";
+
+const apiGamesGrid = document.querySelector("#apiGamesGrid");
 
 async function fetchGames(){
 
   try{
 
     const response = await fetch(
-
       `https://api.rawg.io/api/games?key=${API_KEY}`
-
     );
 
     const data = await response.json();
 
-    console.log(data.results);
+    data.results.slice(0,4).forEach(game => {
+
+      const card = document.createElement("div");
+
+      card.classList.add("game-card");
+
+      card.innerHTML = `
+
+        <img src="${game.background_image}">
+
+        <div class="game-info">
+
+          <h3>${game.name}</h3>
+
+          <div class="tags">
+
+            <span>⭐ ${game.rating}</span>
+
+            <span>${game.released}</span>
+
+          </div>
+
+        </div>
+
+      `;
+
+      apiGamesGrid.appendChild(card);
+
+    });
 
   }
   catch(error){
@@ -245,3 +256,13 @@ async function fetchGames(){
 }
 
 fetchGames();
+
+const menuBtn = document.querySelector(".menu-btn");
+
+const navLinks = document.querySelector(".nav-links");
+
+menuBtn.addEventListener("click", () => {
+
+  navLinks.classList.toggle("active");
+
+});
