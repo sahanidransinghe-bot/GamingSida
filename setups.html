@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorites</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<section class="trending">
+
+  <h2 class="section-title">Your Favorites</h2>
+
+  <div class="games-container" id="favoritesContainer"></div>
+
+</section>
+
+<script>
+
+const container = document.getElementById('favoritesContainer');
+
+const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+
+favorites.forEach(game => {
+
+  const card = document.createElement('div');
+
+  card.classList.add('game-card');
+
+  card.innerHTML = `
+  
+    <img src="${game.background_image}">
+
+    <div class="game-info"><h3>${game.name}</h3>
+      <p>⭐ ${game.rating}</p>
+    </div>
+
+  `;
+
+  container.appendChild(card);
+
+});
+
+</script>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

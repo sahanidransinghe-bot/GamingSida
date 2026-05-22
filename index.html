@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GameZone</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+</head>
+<body>
+
+<header>
+
+  <div class="top-bar">
+
+    <div class="socials">
+
+      <span>FOLLOW US</span>
+
+      <i class="fab fa-discord"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-youtube"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-tiktok"></i>
+
+    </div>
+
+    <div class="top-right">
+
+      <a href="#">LOGIN</a>
+
+      <button>JOIN NOW</button>
+
+    </div>
+
+  </div>
+
+  <nav class="navbar">
+
+    <div class="menu-btn">
+
+      <i class="fas fa-bars"></i>
+
+    </div>
+
+    <h1 class="logo">
+
+      GAME<span>ZONE</span>
+
+    </h1>
+
+    <ul class="nav-links">
+
+      <li><a href="#">HOME</a></li>
+
+      <li><a href="#">SETUPS</a></li>
+
+      <li><a href="#">GAMES</a></li>
+
+      <li><a href="#">GEAR</a></li>
+
+      <li><a href="#">COMMUNITY</a></li>
+
+    </ul>
+
+    <div class="search-box">
+
+      <input
+        type="text"
+        placeholder="Search games..."
+      >
+
+      <i class="fas fa-search"></i>
+
+    </div>
+
+  </nav>
+
+</header>
+
+<section class="hero">
+
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+
+    <h2>
+
+      BUILD.<br>
+      BATTLE.<br>
+
+      <span>DOMINATE.</span>
+
+    </h2>
+
+    <p>
+
+      Discover the best gaming setups.<br>
+      Get inspired. Join the community.
+
+    </p>
+
+    <div class="hero-buttons">
+
+      <button class="primary-btn">
+
+        EXPLORE SETUPS
+
+      </button>
+
+      <button class="secondary-btn">
+
+        BROWSE GAMES
+
+      </button>
+
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+
+        <h3>10K+</h3>
+
+        <span>SETUPS</span>
+
+      </div>
+
+      <div class="stat">
+
+        <h3>50K+</h3>
+
+        <span>USERS</span>
+
+      </div>
+
+      <div class="stat">
+
+        <h3>2K+</h3>
+
+        <span>GAMES</span>
+
+      </div>
+
+      <div class="stat">
+
+        <h3>24/7</h3>
+
+        <span>COMMUNITY</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="platforms">
+
+  <div class="platform-card">
+
+    <i class="fas fa-desktop"></i>
+
+    <div>
+
+      <h3>PC</h3>
+
+      <p>VIEW SETUPS</p>
+
+    </div>
+
+  </div>
+
+  <div class="platform-card">
+
+    <i class="fab fa-playstation"></i>
+
+    <div>
+
+      <h3>PLAYSTATION</h3>
+
+      <p>VIEW SETUPS</p>
+
+    </div>
+
+  </div>
+
+  <div class="platform-card">
+
+    <i class="fab fa-xbox"></i>
+
+    <div>
+
+      <h3>XBOX</h3>
+
+      <p>VIEW SETUPS</p>
+
+    </div>
+
+  </div>
+
+  <div class="platform-card">
+
+    <i class="fas fa-gamepad"></i>
+
+    <div>
+
+      <h3>NINTENDO</h3>
+
+      <p>VIEW SETUPS</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="games-section">
+
+  <div class="section-header">
+
+    <h2>TRENDING SETUPS</h2>
+
+    <a href="#">VIEW ALL</a>
+
+  </div>
+
+  <div class="search-wrapper">
+
+    <input
+      type="text"
+      placeholder="Search setups..."
+      class="search-input"
+    >
+
+  </div>
+
+  <div class="games-grid">
+
+  </div>
+
+</section>
+
+<section class="popular-games">
+
+  <div class="section-header">
+
+    <h2>POPULAR GAMES</h2>
+
+    <a href="#">VIEW ALL GAMES</a>
+
+  </div>
+
+  <div class="api-games-grid" id="apiGamesGrid">
+
+  </div>
+
+</section>
+
+<section class="community-section">
+
+  <div class="community-card purple">
+
+    <div class="community-content">
+
+      <h2>JOIN OUR COMMUNITY</h2>
+
+      <p>
+
+        Share your setup, get inspired and connect with gamers.
+
+      </p>
+
+      <button>
+
+        JOIN DISCORD
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="community-card red">
+
+    <div class="community-content">
+
+      <h2>SUBMIT YOUR SETUP</h2>
+
+      <p>
+
+        Show off your gaming setup and get featured.
+
+      </p>
+
+      <button>
+
+        SUBMIT NOW
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+
+  <div class="footer-content">
+
+    <h2 class="footer-logo">
+
+      GAME<span>ZONE</span>
+
+    </h2>
+
+    <p>
+
+      Ultimate gaming setup inspiration and community hub.
+
+    </p>
+
+    <div class="footer-socials">
+
+      <i class="fab fa-discord"></i>
+
+      <i class="fab fa-twitter"></i>
+
+      <i class="fab fa-youtube"></i>
+
+      <i class="fab fa-instagram"></i>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
