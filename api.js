@@ -1,66 +1,72 @@
-const gamesContainer = document.querySelector('.games-grid');
+document.addEventListener("DOMContentLoaded", () => {
 
-const API_KEY = '4df25c2226dd4e2e8f79e305677ef996';
+  const gamesContainer = document.querySelector('.games-grid');
 
-async function fetchGames(){
+  const API_KEY = '4df25c2226dd4e2e8f79e305677ef996';
 
-  try{
+  async function fetchGames(){
 
-    const response = await fetch(
-      `https://api.rawg.io/api/games?key=${API_KEY}`
-    );
+    try{
 
-    const data = await response.json();
+      const response = await fetch(
+        `https://api.rawg.io/api/games?key=${API_KEY}`
+      );
 
-    displayGames(data.results);
+      const data = await response.json();
+
+      displayGames(data.results);
+
+    }
+    catch(error){
+
+      console.log(error);
+
+    }
 
   }
-  catch(error){
 
-    console.log(error);
+  function displayGames(games){
 
-  }
+    gamesContainer.innerHTML = "";
 
-}
+    games.slice(0,8).forEach(game => {
 
-function displayGames(games){
+      const card = document.createElement('div');
 
-  games.forEach(game => {
+      card.classList.add('game-card');
 
-    const card = document.createElement('div');
+      card.innerHTML = `
+      
+        <img src="${game.background_image}" alt="${game.name}">
 
-    card.classList.add('game-card');
+        <div class="game-info">
 
-    card.innerHTML = `
-    
-      <img src="${game.background_image}" alt="${game.name}">
+          <h3>${game.name}</h3>
 
-      <div class="game-info">
+          <p>⭐ ${game.rating}</p>
 
-        <h3>${game.name}</h3>
+          <div class="game-buttons">
 
-        <p>⭐ ${game.rating}</p>
+            <button class="open-btn">
+              Open
+            </button>
 
-        <div class="game-buttons">
+            <button class="favorite-btn">
+              ❤️
+            </button>
 
-          <button class="open-btn">
-            Open
-          </button>
-
-          <button class="favorite-btn">
-            ❤️
-          </button>
+          </div>
 
         </div>
 
-      </div>
+      `;
 
-    `;
+      gamesContainer.appendChild(card);
 
-    gamesContainer.appendChild(card);
+    });
 
-  });
+  }
 
-}
+  fetchGames();
 
-fetchGames();
+});
