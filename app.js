@@ -9,17 +9,13 @@ from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
 
-  apiKey: "YOUR_API_KEY",
-
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-
-  projectId: "YOUR_PROJECT_ID",
-
-  storageBucket: "YOUR_PROJECT.appspot.com",
-
-  messagingSenderId: "123456789",
-
-  appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyAqw2oE3KkW8QtJXo0hMglLWELTcQBIH4k",
+    authDomain: "gamingsida-7ed80.firebaseapp.com",
+    projectId: "gamingsida-7ed80",
+    storageBucket: "gamingsida-7ed80.firebasestorage.app",
+    messagingSenderId: "507765411916",
+    appId: "1:507765411916:web:9177db8c03610c8e1c64e9",
+    measurementId: "G-JB6Q330WP1"
 
 };
 
@@ -202,7 +198,7 @@ if(searchInput){
 
 }
 
-const API_KEY = "AIzaSyAqw2oE3KkW8QtJXo0hMglLWELTcQBIH4k";
+const API_KEY = "4df25c2226dd4e2e8f79e305677ef996";
 
 const apiGamesGrid = document.querySelector("#apiGamesGrid");
 

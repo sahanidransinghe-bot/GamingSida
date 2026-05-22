@@ -1,12 +1,14 @@
-const gamesContainer = document.getElementById('gamesContainer');
+const gamesContainer = document.querySelector('.games-grid');
 
-const API_KEY = 'AIzaSyAqw2oE3KkW8QtJXo0hMglLWELTcQBIH4k';
+const API_KEY = '4df25c2226dd4e2e8f79e305677ef996';
 
 async function fetchGames(){
 
   try{
 
-    const response = await fetch(`https://api.rawg.io/api/games?key=${API_KEY}`);
+    const response = await fetch(
+      `https://api.rawg.io/api/games?key=${API_KEY}`
+    );
 
     const data = await response.json();
 
@@ -14,7 +16,9 @@ async function fetchGames(){
 
   }
   catch(error){
+
     console.log(error);
+
   }
 
 }
@@ -39,11 +43,11 @@ function displayGames(games){
 
         <div class="game-buttons">
 
-          <button class="open-btn" onclick="openGame(${game.id})">
+          <button class="open-btn">
             Open
           </button>
 
-          <button class="favorite-btn" onclick='saveFavorite(${JSON.stringify(game)})'>
+          <button class="favorite-btn">
             ❤️
           </button>
 
@@ -57,10 +61,6 @@ function displayGames(games){
 
   });
 
-}
-
-function openGame(id){
-  window.location.href = `details.html?id=${id}`;
 }
 
 fetchGames();
