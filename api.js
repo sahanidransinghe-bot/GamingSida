@@ -1,72 +1,70 @@
-document.addEventListener("DOMContentLoaded", () => {
+const gamesContainer = document.getElementById('gamesContainer');
 
-  const gamesContainer = document.querySelector('.games-grid');
+const API_KEY = '4df25c2226dd4e2e8f79e305677ef996';
 
-  const API_KEY = '4df25c2226dd4e2e8f79e305677ef996';
+async function fetchGames(){
 
-  async function fetchGames(){
+  try{
 
-    try{
+    const response = await fetch(
+      `https://api.rawg.io/api/games?key=${API_KEY}`
+    );
 
-      const response = await fetch(
-        `https://api.rawg.io/api/games?key=${API_KEY}`
-      );
+    const data = await response.json();
 
-      const data = await response.json();
+    displayGames(data.results);
 
-      displayGames(data.results);
+  }
+  catch(error){
 
-    }
-    catch(error){
-
-      console.log(error);
-
-    }
+    console.log(error);
 
   }
 
-  function displayGames(games){
+}
 
-    gamesContainer.innerHTML = "";
+function displayGames(games){
 
-    games.slice(0,8).forEach(game => {
+  gamesContainer.innerHTML = "";
 
-      const card = document.createElement('div');
+  games.forEach(game => {
 
-      card.classList.add('game-card');
+    const card = document.createElement('div');
 
-      card.innerHTML = `
-      
-        <img src="${game.background_image}" alt="${game.name}">
+    card.classList.add('game-card');
 
-        <div class="game-info">
+    card.innerHTML = `
+    
+      <img src="${game.background_image}" alt="${game.name}">
 
-          <h3>${game.name}</h3>
+      <div class="game-info">
 
-          <p>⭐ ${game.rating}</p>
+        <h3>${game.name}</h3>
 
-          <div class="game-buttons">
+        <p>⭐ ${game.rating}</p>
 
-            <button class="open-btn">
-              Open
-            </button>
+        <div class="game-buttons">
 
-            <button class="favorite-btn">
-              ❤️
-            </button>
-
-          </div>
+          <button class="open-btn" onclick="openGame(${game.id})">
+            View
+          </button>
 
         </div>
 
-      `;
+      </div>
 
-      gamesContainer.appendChild(card);
+    `;
 
-    });
+    gamesContainer.appendChild(card);
 
-  }
+  });
 
-  fetchGames();
+}
 
-});
+function openGame(id){
+
+  window.location.href = `details.html?id=${id}`;
+
+}
+
+fetchGames();

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Game Details</title>
+
+  <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+<body>
+
+<div class="details-page">
+
+  <div id="detailsContainer"></div>
+
+</div>
+
+<script>
+
+const API_KEY = '4df25c2226dd4e2e8f79e305677ef996';
+
+const params = new URLSearchParams(window.location.search);
+
+const gameId = params.get("id");
+
+const detailsContainer = document.getElementById("detailsContainer");
+
+async function fetchGameDetails(){
+
+  try{
+
+    const response = await fetch(
+      `https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`
+    );
+
+    const game = await response.json();
+
+    detailsContainer.innerHTML = `
+
+      <div class="details-card">
+
+        <img src="${game.background_image}">
+
+        <div class="details-content">
+
+          <h1>${game.name}</h1>
+
+          <p>⭐ ${game.rating}</p>
+
+          <p>Released: ${game.released}</p>
+
+          <p>
+            ${game.description_raw || "No description"}
+          </p>
+
+          <a href="games.html" class="back-btn">
+            Back
+          </a>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+  catch(error){
+
+    console.log(error);
+
+  }
+
+}
+
+fetchGameDetails();
+
+</script>
+
+</body>
+</html>
