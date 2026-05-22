@@ -23,6 +23,7 @@ const container = document.getElementById('favoritesContainer');
 
 const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
+<div class="games-grid" id="gamesContainer"></div>
 
 favorites.forEach(game => {
 
@@ -47,5 +48,7 @@ favorites.forEach(game => {
 </script>
 
 <script type="module" src="app.js"></script>
+<script src="JS/api.js"></script>
 </body>
+
 </html>
