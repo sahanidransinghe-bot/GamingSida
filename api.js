@@ -1,6 +1,10 @@
 const gamesContainer = document.getElementById('gamesContainer');
 
+const searchInput = document.getElementById('searchInput');
+
 const API_KEY = '4df25c2226dd4e2e8f79e305677ef996';
+
+let allGames = [];
 
 async function fetchGames(){
 
@@ -12,7 +16,9 @@ async function fetchGames(){
 
     const data = await response.json();
 
-    displayGames(data.results);
+    allGames = data.results;
+
+    displayGames(allGames);
 
   }
   catch(error){
@@ -25,7 +31,7 @@ async function fetchGames(){
 
 function displayGames(games){
 
-  gamesContainer.innerHTML = "";
+  gamesContainer.innerHTML = '';
 
   games.forEach(game => {
 
@@ -39,14 +45,38 @@ function displayGames(games){
 
       <div class="game-info">
 
-        <h3>${game.name}</h3>
+        <div class="top-card">
 
-        <p>⭐ ${game.rating}</p>
+          <h3>${game.name}</h3>
 
-        <div class="game-buttons">
+          <span class="rating">
+            ⭐ ${game.rating}
+          </span>
 
-          <button class="open-btn" onclick="openGame(${game.id})">
+        </div>
+
+        <div class="tags">
+
+          ${
+            game.genres
+            .slice(0,2)
+            .map(genre => `<span>${genre.name}</span>`)
+            .join('')
+          }
+
+        </div>
+
+        <div class="card-buttons">
+
+          <button
+            class="view-btn"
+            onclick="openGame(${game.id})"
+          >
             View
+          </button>
+
+          <button class="fav-btn">
+            ❤️
           </button>
 
         </div>
@@ -67,4 +97,45 @@ function openGame(id){
 
 }
 
+searchInput.addEventListener('input', () => {
+
+  const value = searchInput.value.toLowerCase();
+
+  const filteredGames = allGames.filter(game => {
+
+    return game.name.toLowerCase().includes(value);
+
+  });
+
+  displayGames(filteredGames);
+
+});
+
 fetchGames();
+
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+
+  if(window.scrollY > 50){
+
+    navbar.style.background = "#02040d";
+
+  }
+  else{
+
+    navbar.style.background = "#070b1b";
+
+  }
+
+});
+
+const menuBtn = document.querySelector(".menu-btn");
+
+const navLinks = document.querySelector(".nav-links");
+
+menuBtn.addEventListener("click", () => {
+
+  navLinks.classList.toggle("active");
+
+});

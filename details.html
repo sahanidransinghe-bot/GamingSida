@@ -13,11 +13,11 @@
 </head>
 <body>
 
-<div class="details-page">
+<section class="details-page">
 
   <div id="detailsContainer"></div>
 
-</div>
+</section>
 
 <script>
 
@@ -49,11 +49,27 @@ async function fetchGameDetails(){
 
           <h1>${game.name}</h1>
 
-          <p>⭐ ${game.rating}</p>
+          <p class="rating">
+            ⭐ ${game.rating}
+          </p>
 
-          <p>Released: ${game.released}</p>
+          <div class="genres">
 
-          <p>
+            ${
+              game.genres
+              .map(genre =>
+                `<span>${genre.name}</span>`
+              )
+              .join("")
+            }
+
+          </div>
+
+          <p class="release">
+            Released: ${game.released}
+          </p>
+
+          <p class="description">
             ${game.description_raw || "No description"}
           </p>
 
